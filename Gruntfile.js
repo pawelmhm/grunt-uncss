@@ -36,9 +36,6 @@ module.exports = function(grunt) {
             'app/about.html',
             'app/contact.html']
         },
-        options: {
-          compress: false
-        }
       },
       dist: {
         files: {
@@ -47,9 +44,6 @@ module.exports = function(grunt) {
           'app/about.html',
           'app/contact.html']
         },
-        options: {
-          compress: true
-        }
       },
     },
 
@@ -61,17 +55,6 @@ module.exports = function(grunt) {
           'dist/contact.html': ['app/contact.html']
         }
       }
-    },
-
-    cssmin: {
-        dist: {
-            files: {
-                'dist/css/other.css': [
-                    'app/{,*/}*.css',
-                    '!app/css/bootstrap.css'
-                ]
-            }
-        }
     },
 
     copy: {
@@ -117,7 +100,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-processhtml');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-compare-size');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
@@ -128,7 +110,6 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [
     'clean',
     'processhtml:dist', 
-    'cssmin',
     'copy:dist',
     'uncss:dist',
     'compare_size'
